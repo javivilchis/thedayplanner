@@ -15,7 +15,7 @@ This day planner helps you know when this hour is happening by coloring it in RE
 
 ## How to use it
 
-Download the script and open the Index.html using your favorite browser. 
+![Download the script and open the Index.html using your favorite browser. 
 Then, click on the biggest text area in the list by hour and click the save button to save it in localStorage.
-
+Here is what you should see: ](./assets/images/theplanner.png)
 Note: don't save important information inside localstorage, this place is here, but not because is here you are going to add anything you want. 
