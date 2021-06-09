@@ -1,6 +1,5 @@
 $(document).ready( function(){
      $.each( hours, function( index, value ){
-        //console.log(localStorage.getItem(index));
         $(".time-block #textArea-" + index).val(localStorage.getItem(index));
      });
 });
@@ -8,6 +7,11 @@ $(document).ready( function(){
 var dayPlanner = document.getElementById("dayPlanner");
 var day = document.getElementById("dayPlanner");
 var tmp = '';
+// localstorage object
+var schedule = {
+     name: "",
+     value:""
+};
 
 // set the date for the schedule
 setInterval(function(){ 
@@ -46,7 +50,7 @@ var hours =
 $.each( hours, function( index, value ){
      var hour = moment();
      var horita = hour.format('H');
-     var currentTime = horita + 1;
+     var currentTime = parseInt(horita)+1;
 
      tmp += '<div class="row time-block no-gutters mb-2">';
      tmp += '<div class="col-12 col-sm-2 hour">'+ value + '</div>';
@@ -64,28 +68,28 @@ $.each( hours, function( index, value ){
      tmp += '<div style="" class="saveBtn w100 d-flex justify-content-center flex-fill">';
      tmp += '<div id="button" class="d-flex align-self-stretch align-items-center" data-save="'+ index +'"><i class="far fa-save"></i></div></div>';
      tmp += '</div></div>';
-});
+},1000);
 
 $(dayPlanner).prepend(tmp);
 
 $(document).on("click","#button", function(){
-   
      $(".time-block #textArea-" + id).val();
      var id = $(this).data("save");
      var value = $("#textArea-"+id).val();
      var key = id;
-     //add to local storage
-     addToLocalStorage(key,value);
+    addToLocalStorage(key,value);
 });
 
 
 var addToLocalStorage = function(key,value){
      //get existing data
      var existing = localStorage.getItem(schedule);
+
      // if there is data, create an array
      existing = existing ? JSON.parse(existing) : {};
      // add new data to localStorage Array
      existing[key] = value;
      //save back to localStorage
      localStorage.setItem(key, value);
-}
+     //localStorage.setItem(name, JSON.stringify(existing));
+} 
